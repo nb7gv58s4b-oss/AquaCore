@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DiarioRouteImport } from './routes/diario'
+import { Route as FotoRouteImport } from './routes/foto'
+import { Route as ImpostazioniRouteImport } from './routes/impostazioni'
+import { Route as ManutenzioniRouteImport } from './routes/manutenzioni'
+import { Route as ParametriRouteImport } from './routes/parametri'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiarioRoute = DiarioRouteImport.update({
+  id: '/diario',
+  path: '/diario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FotoRoute = FotoRouteImport.update({
+  id: '/foto',
+  path: '/foto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpostazioniRoute = ImpostazioniRouteImport.update({
+  id: '/impostazioni',
+  path: '/impostazioni',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManutenzioniRoute = ManutenzioniRouteImport.update({
+  id: '/manutenzioni',
+  path: '/manutenzioni',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParametriRoute = ParametriRouteImport.update({
+  id: '/parametri',
+  path: '/parametri',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/diario': typeof DiarioRoute
+  '/foto': typeof FotoRoute
+  '/impostazioni': typeof ImpostazioniRoute
+  '/manutenzioni': typeof ManutenzioniRoute
+  '/parametri': typeof ParametriRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/diario': typeof DiarioRoute
+  '/foto': typeof FotoRoute
+  '/impostazioni': typeof ImpostazioniRoute
+  '/manutenzioni': typeof ManutenzioniRoute
+  '/parametri': typeof ParametriRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/diario': typeof DiarioRoute
+  '/foto': typeof FotoRoute
+  '/impostazioni': typeof ImpostazioniRoute
+  '/manutenzioni': typeof ManutenzioniRoute
+  '/parametri': typeof ParametriRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/diario' | '/foto' | '/impostazioni' | '/manutenzioni' | '/parametri'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/diario' | '/foto' | '/impostazioni' | '/manutenzioni' | '/parametri'
+  id:
+    | '__root__'
+    | '/'
+    | '/diario'
+    | '/foto'
+    | '/impostazioni'
+    | '/manutenzioni'
+    | '/parametri'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DiarioRoute: typeof DiarioRoute
+  FotoRoute: typeof FotoRoute
+  ImpostazioniRoute: typeof ImpostazioniRoute
+  ManutenzioniRoute: typeof ManutenzioniRoute
+  ParametriRoute: typeof ParametriRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/diario': {
+      id: '/diario'
+      path: '/diario'
+      fullPath: '/diario'
+      preLoaderRoute: typeof DiarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/foto': {
+      id: '/foto'
+      path: '/foto'
+      fullPath: '/foto'
+      preLoaderRoute: typeof FotoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impostazioni': {
+      id: '/impostazioni'
+      path: '/impostazioni'
+      fullPath: '/impostazioni'
+      preLoaderRoute: typeof ImpostazioniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manutenzioni': {
+      id: '/manutenzioni'
+      path: '/manutenzioni'
+      fullPath: '/manutenzioni'
+      preLoaderRoute: typeof ManutenzioniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parametri': {
+      id: '/parametri'
+      path: '/parametri'
+      fullPath: '/parametri'
+      preLoaderRoute: typeof ParametriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DiarioRoute: DiarioRoute,
+  FotoRoute: FotoRoute,
+  ImpostazioniRoute: ImpostazioniRoute,
+  ManutenzioniRoute: ManutenzioniRoute,
+  ParametriRoute: ParametriRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
