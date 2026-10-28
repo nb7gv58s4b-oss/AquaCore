@@ -35,7 +35,10 @@ function Impostazioni() {
   const save = (e: React.FormEvent) => {
     e.preventDefault();
     const l = parseNum(liters);
-    if (Number.isNaN(l) || (l !== null && l <= 0)) return toast.error("Litri non validi.");
+    if (Number.isNaN(l) || (l !== null && l <= 0)) {
+      toast.error("Litri non validi.");
+      return;
+    }
     safe(() => saveSettings({ tankName: name.trim(), liters: l }), "Impostazioni salvate");
   };
 
@@ -46,7 +49,10 @@ function Impostazioni() {
       journal: { rows: data.journal, h: ["date", "type", "text"] },
       maintenance: { rows: data.maintenance, h: ["date", "description", "frequencyDays", "reminder"] },
     }[kind];
-    if (map.rows.length === 0) return toast.error("Nessun dato da esportare.");
+    if (map.rows.length === 0) {
+      toast.error("Nessun dato da esportare.");
+      return;
+    }
     download(`acquario-${kind}-${d}.csv`, toCsv(map.rows as unknown as Record<string, unknown>[], map.h));
   };
 

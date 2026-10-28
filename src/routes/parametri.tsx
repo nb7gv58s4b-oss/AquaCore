@@ -148,7 +148,7 @@ function TestForm({ initial, onDone }: { initial: WaterTest | null; onDone: () =
     if (!datetime) return setError("Indica data e ora.");
     const parsed: Record<string, number | null> = {};
     for (const p of PARAMS) {
-      const n = parseNum(vals[p.key]);
+      const n = parseNum(vals[p.key] ?? "");
       if (Number.isNaN(n)) return setError(`Valore non valido per ${p.label}.`);
       parsed[p.key] = n;
     }
